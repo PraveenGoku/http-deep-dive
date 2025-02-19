@@ -1,0 +1,20 @@
+<!-- <app-places-container title="Available Places">
+  @if (places()) {
+  <app-places [places]="places()!" />
+  } @else if (places()?.length === 0) {
+  <p class="fallback-text">Unfortunately, no places could be found.</p>
+  }
+</app-places-container> -->
+
+<app-places-container title="Available Places">
+
+  <p *ngIf="isFetching && !error" class="fallback-text">Fetching Available Places...</p>
+
+  <p *ngIf="error" class="fallback-text">{{error}}</p>
+
+  @if (places) {
+  <app-places [places]="places!" (selectPlace)="onSelectPlace($event)"/>
+  } @else if (places === 0) {
+  <p class="fallback-text">Unfortunately, no places could be found.</p>
+  }
+</app-places-container>
